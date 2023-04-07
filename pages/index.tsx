@@ -4,8 +4,7 @@ import { Inter } from 'next/font/google'
 import styles from '@component/styles/Home.module.css'
 import Link from 'next/link'
 
-require('dotenv').config()
-
+console.log(process.env.TESTING)
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {

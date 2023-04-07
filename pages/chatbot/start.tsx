@@ -1,26 +1,32 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import Layout from '../../components/layouts';
-import React, { useState, useEffect } from 'react';
+import React, { useState, FormEvent } from 'react'; // useState for form state and response from API
 import { Configuration, OpenAIApi } from "openai"; // openai api for chat GPT
 
-require('dotenv').config()
+
 
 export default function Start() {
 
-    const [chat, setChat] = useState({
+    interface Chat {
+        formValue: string;
+        response: string | undefined;
+    }
+
+    const [chat, setChat] = useState<Chat>({
         formValue: '',
-        response: ''
+        response: '' 
     })
 
-    const handleChange = (e: Event) => {
+    const handleChange = (e: FormEvent) => {
+        const form = e.target as HTMLFormElement
         setChat({
             ...chat,
-            [e.target.name]: e.target.value
+            [form.name]: form.value
         });
     }
 
-    const handleSubmit = (e: Event) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         getCompletion()      
 	}
@@ -33,12 +39,12 @@ export default function Start() {
     async function getCompletion() { 
     try {
         const completion = await openai.createCompletion({
-        model: "gpt-3.5-turbo",
+        model: "text-davinci-003",
         prompt: "Hello world",
         });
         setChat({...chat, response: completion.data.choices[0].text});
         console.log(completion.data.choices[0].text);
-    } catch (error: object) {
+    } catch (error: any) {
         if (error.response) {
         console.log(error.response.status);
         console.log(error.response.data);
@@ -63,7 +69,7 @@ export default function Start() {
                 {/* <p>{completion.data.choices[0].text}</p> */}
             </div>
             <form onSubmit={handleSubmit}>
-                <label>Chat:<input type="text" name="formValue" value={chat.formValue} onChange={handleChange}></input></label><button>Send</button>
+                <label>Chat:<input type="text" name="formValue" onChange={handleChange}></input></label><button>Send</button>
             </form>
         </Layout>
     );
