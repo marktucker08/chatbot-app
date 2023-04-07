@@ -4,6 +4,7 @@ import Layout from '../../components/layouts';
 import React, { useState, useEffect } from 'react';
 import { Configuration, OpenAIApi } from "openai"; // openai api for chat GPT
 
+require('dotenv').config()
 
 export default function Start() {
 
@@ -37,7 +38,7 @@ export default function Start() {
         });
         setChat({...chat, response: completion.data.choices[0].text});
         console.log(completion.data.choices[0].text);
-    } catch (error) {
+    } catch (error: object) {
         if (error.response) {
         console.log(error.response.status);
         console.log(error.response.data);
