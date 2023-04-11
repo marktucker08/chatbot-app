@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Layout from '../../components/layouts';
 import React, { useState, FormEvent } from 'react'; // useState for form state and response from API
 import { Configuration, OpenAIApi } from "openai"; // openai api for chat GPT
+import styles from '@component/styles/Home.module.css'
 
 
 
@@ -10,12 +11,18 @@ export default function Start() {
 
     interface Chat {
         formValue: string;
-        response: string | undefined;
+        response: {
+            role: string,
+            content: string
+        } | undefined
     }
 
     const [chat, setChat] = useState<Chat>({
         formValue: '',
-        response: '' 
+        response: {
+            role: '',
+            content: '',
+        }
     })
 
     const handleChange = (e: FormEvent) => {
@@ -38,12 +45,12 @@ export default function Start() {
     
     async function getCompletion() { 
     try {
-        const completion = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: "Hello world",
+        const completion = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [{role: "user", content: chat.formValue}],
         });
-        setChat({...chat, response: completion.data.choices[0].text});
-        console.log(completion.data.choices[0].text);
+        setChat({...chat, response: completion.data.choices[0].message});
+        console.log(completion.data.choices[0].message.content);
     } catch (error: any) {
         if (error.response) {
         console.log(error.response.status);
@@ -64,9 +71,9 @@ export default function Start() {
             <h2>   
                 <Link href="/">Back to home</Link>
             </h2>
-            <div>
-                <p>You: Hello World!</p>
-                {/* <p>{completion.data.choices[0].text}</p> */}
+            <div className={styles.card}>
+                <p>You: {chat.formValue}</p>
+                <p>Assistant: {chat.response.content}</p>
             </div>
             <form onSubmit={handleSubmit}>
                 <label>Chat:<input type="text" name="formValue" onChange={handleChange}></input></label><button>Send</button>
