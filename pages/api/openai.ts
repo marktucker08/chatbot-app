@@ -14,7 +14,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       messages: [{role: "user", content: req.body.message}],
       });
 
-    res.status(200).json({ text: `${completion.data.choices[0].message}` });
+    res.status(200).json({ text: completion.data.choices[0].message });
   } else {
     res.status(400).json({ text: "No message provided." });
   }

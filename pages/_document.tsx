@@ -4,7 +4,6 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-      <link href="../../dist/output.css" rel="stylesheet" />
       </Head>
       <body>
         <Main />
