@@ -38,28 +38,28 @@ export default function Start() {
         getCompletion()      
 	}
 
-    const configuration = new Configuration({
-        apiKey: process.env.OPENAI_API_KEY,
-    });
-    const openai = new OpenAIApi(configuration);
+    // const configuration = new Configuration({ // moved to api/openai
+    //     apiKey: process.env.OPENAI_API_KEY,
+    // });
+    // const openai = new OpenAIApi(configuration);
     
-    async function getCompletion() { 
-    try {
-        const completion = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo",
-        messages: [{role: "user", content: chat.formValue}],
-        });
-        setChat({...chat, response: completion.data.choices[0].message});
-        console.log(completion.data.choices[0].message.content);
-    } catch (error: any) {
-        if (error.response) {
-        console.log(error.response.status);
-        console.log(error.response.data);
-        } else {
-        console.log(error.message);
-        }
-    }
-    }
+    // async function getCompletion() { // moved to api/openai
+    // try {
+    //     const completion = await openai.createChatCompletion({
+    //     model: "gpt-3.5-turbo",
+    //     messages: [{role: "user", content: chat.formValue}],
+    //     });
+    //     setChat({...chat, response: completion.data.choices[0].message});
+    //     console.log(completion.data.choices[0].message.content);
+    // } catch (error: any) {
+    //     if (error.response) {
+    //     console.log(error.response.status);
+    //     console.log(error.response.data);
+    //     } else {
+    //     console.log(error.message);
+    //     }
+    // }
+    // }
 
 
     return (
