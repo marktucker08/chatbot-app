@@ -40,7 +40,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 
 ## This app will connect to the Chat GPT API 
-pages/test.tsx - will run in node in console mode
 
 pages/index.tsx - main
 chatbot/start.tsx - chat page with basic form

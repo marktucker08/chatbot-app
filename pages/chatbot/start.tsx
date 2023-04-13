@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Head from 'next/head';
-import Layout from '../../components/layouts';
 import React, { useState, FormEvent } from 'react'; // useState for form state and response from API
 import styles from '@component/styles/Home.module.css'
 
@@ -42,31 +41,29 @@ export default function Start() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main className={styles.main}>
-                <div className={styles.center}>
-                    <h1 className={styles.title}>Chatbot</h1>
-                </div>
-                <div className={styles.center}>
+            <main>
+                
+                    <h1 className="text-xl text-center font-medium text-black">Chatbot</h1>
+                
                     <textarea
-                        className={styles.promptInput}
+                        className="textarea"
                         placeholder="Say Something!"
                         onChange={handleChange}
                         rows={5}
                         cols={50}
                     />
-                    </div>
-                    <div className={styles.center}>
-                    <button className={styles.button} onClick={getResponse}>
-                        Get Response
-                    </button>
-                    </div>
-
-                    <div className={styles.response}>
-                        {isLoading ? (
-                        <div>Waiting for response ...</div>
-                        ) : (
-                        <div>{response}</div>
-                        )}
+                    <div className="flex-col items-center space-x-3">
+                        <button className="bg-sky-500 hover:bg-sky-600 rounded-md" onClick={getResponse}>
+                            Get Response
+                        </button>
+                        
+                        <div className="text-ellipsis">
+                            {isLoading ? (
+                            <div>Waiting for response ...</div>
+                            ) : (
+                            <div>{response}</div>
+                            )}
+                        </div>
                     </div>
 
                 <h3>   

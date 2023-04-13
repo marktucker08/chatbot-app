@@ -14,12 +14,10 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-    
-        </div>
+      <main>
+        
         <Link href="/chatbot/start">
-          <div className={styles.center}>
+          <div className="text-xl text-center font-medium text-black">
             <h1 className="title">
               Welcome to the ChatBot Automation!
             </h1>
