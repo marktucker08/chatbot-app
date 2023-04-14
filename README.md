@@ -38,8 +38,14 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 
-
 ## This app will connect to the Chat GPT API 
 
-pages/index.tsx - main
-chatbot/start.tsx - chat page with basic form
+pages/index.tsx - main chat page with basic form
+
+api/openai - local API endpoint that will query OpenAI Chat completion with each new request.
+
+OpenAI API Key - Need to have an API key environment variable process.env.OPENAI_API_KEY. Please refer to the OpenAI API documentation.
+
+Dependendcies - openai
+
+This project is coded with typescript and tailwind css. 

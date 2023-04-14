@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import React, { useState, FormEvent } from 'react'; // useState for form state and response from API
-import styles from '@component/styles/Home.module.css'
 
 
 export default function Start() {
@@ -41,23 +40,23 @@ export default function Start() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main>
+            <main className="my-0 mx-auto max-w-3xl text-center">
                 
-                    <h1 className="text-xl text-center font-medium text-black">Chatbot</h1>
+                    <h1 className="p-6 text-4xl text-black">Chatbot</h1>
                 
                     <textarea
-                        className="textarea"
+                        className="p-2"
                         placeholder="Say Something!"
                         onChange={handleChange}
                         rows={5}
                         cols={50}
                     />
-                    <div className="flex-col items-center space-x-3">
-                        <button className="bg-sky-500 hover:bg-sky-600 rounded-md" onClick={getResponse}>
+                    <div className="p-6 space-x-3">
+                        <button className="bg-sky-500 hover:bg-sky-600 rounded-lg" onClick={getResponse}>
                             Get Response
                         </button>
                         
-                        <div className="text-ellipsis">
+                        <div className="p-6 text-ellipsis">
                             {isLoading ? (
                             <div>Waiting for response ...</div>
                             ) : (
